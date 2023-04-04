@@ -1,0 +1,27 @@
+syntax = "proto3";
+package token;
+option go_package = "token/token";
+
+//messages send between methods regarding tokens
+message Token {
+    string id = 1; 
+    string name = 2;
+    uint64 dlow = 3;
+    uint64 dmid = 4;
+    uint64 dhigh = 5;
+    uint64 spvalue = 6;
+    uint64 sfvalue = 7;
+    string message = 8;
+}
+service TokenService {
+    //method call for creating token
+    rpc CreateToken (Token) returns (Token);
+    //method call for writing token
+    rpc WriteToken (Token) returns (Token);
+    //method call for reading token
+    rpc ReadToken (Token) returns (Token);
+    //method call for droping token
+    rpc DropToken (Token) returns (Token);
+    //method call for printing tokens
+    rpc GetAllTokens (Token) returns (stream Token);
+}
