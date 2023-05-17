@@ -4,7 +4,7 @@
 // - protoc             v4.22.2
 // source: usermgmt/usermgmt.proto
 
-package token
+package go_usermgmt_grpc
 
 import (
 	context "context"
@@ -22,10 +22,15 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TokenServiceClient interface {
+	// method call for creating token
 	CreateToken(ctx context.Context, in *Token, opts ...grpc.CallOption) (*Token, error)
+	// method call for writing token
 	WriteToken(ctx context.Context, in *Token, opts ...grpc.CallOption) (*Token, error)
+	// method call for reading token
 	ReadToken(ctx context.Context, in *Token, opts ...grpc.CallOption) (*Token, error)
+	// method call for droping token
 	DropToken(ctx context.Context, in *Token, opts ...grpc.CallOption) (*Token, error)
+	// method call for printing tokens
 	GetAllTokens(ctx context.Context, in *Token, opts ...grpc.CallOption) (TokenService_GetAllTokensClient, error)
 }
 
@@ -39,7 +44,7 @@ func NewTokenServiceClient(cc grpc.ClientConnInterface) TokenServiceClient {
 
 func (c *tokenServiceClient) CreateToken(ctx context.Context, in *Token, opts ...grpc.CallOption) (*Token, error) {
 	out := new(Token)
-	err := c.cc.Invoke(ctx, "/token.TokenService/CreateToken", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usermgmt.TokenService/CreateToken", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +53,7 @@ func (c *tokenServiceClient) CreateToken(ctx context.Context, in *Token, opts ..
 
 func (c *tokenServiceClient) WriteToken(ctx context.Context, in *Token, opts ...grpc.CallOption) (*Token, error) {
 	out := new(Token)
-	err := c.cc.Invoke(ctx, "/token.TokenService/WriteToken", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usermgmt.TokenService/WriteToken", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -57,7 +62,7 @@ func (c *tokenServiceClient) WriteToken(ctx context.Context, in *Token, opts ...
 
 func (c *tokenServiceClient) ReadToken(ctx context.Context, in *Token, opts ...grpc.CallOption) (*Token, error) {
 	out := new(Token)
-	err := c.cc.Invoke(ctx, "/token.TokenService/ReadToken", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usermgmt.TokenService/ReadToken", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +71,7 @@ func (c *tokenServiceClient) ReadToken(ctx context.Context, in *Token, opts ...g
 
 func (c *tokenServiceClient) DropToken(ctx context.Context, in *Token, opts ...grpc.CallOption) (*Token, error) {
 	out := new(Token)
-	err := c.cc.Invoke(ctx, "/token.TokenService/DropToken", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/usermgmt.TokenService/DropToken", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +79,7 @@ func (c *tokenServiceClient) DropToken(ctx context.Context, in *Token, opts ...g
 }
 
 func (c *tokenServiceClient) GetAllTokens(ctx context.Context, in *Token, opts ...grpc.CallOption) (TokenService_GetAllTokensClient, error) {
-	stream, err := c.cc.NewStream(ctx, &TokenService_ServiceDesc.Streams[0], "/token.TokenService/GetAllTokens", opts...)
+	stream, err := c.cc.NewStream(ctx, &TokenService_ServiceDesc.Streams[0], "/usermgmt.TokenService/GetAllTokens", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,10 +114,15 @@ func (x *tokenServiceGetAllTokensClient) Recv() (*Token, error) {
 // All implementations must embed UnimplementedTokenServiceServer
 // for forward compatibility
 type TokenServiceServer interface {
+	// method call for creating token
 	CreateToken(context.Context, *Token) (*Token, error)
+	// method call for writing token
 	WriteToken(context.Context, *Token) (*Token, error)
+	// method call for reading token
 	ReadToken(context.Context, *Token) (*Token, error)
+	// method call for droping token
 	DropToken(context.Context, *Token) (*Token, error)
+	// method call for printing tokens
 	GetAllTokens(*Token, TokenService_GetAllTokensServer) error
 	mustEmbedUnimplementedTokenServiceServer()
 }
@@ -159,7 +169,7 @@ func _TokenService_CreateToken_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/token.TokenService/CreateToken",
+		FullMethod: "/usermgmt.TokenService/CreateToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TokenServiceServer).CreateToken(ctx, req.(*Token))
@@ -177,7 +187,7 @@ func _TokenService_WriteToken_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/token.TokenService/WriteToken",
+		FullMethod: "/usermgmt.TokenService/WriteToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TokenServiceServer).WriteToken(ctx, req.(*Token))
@@ -195,7 +205,7 @@ func _TokenService_ReadToken_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/token.TokenService/ReadToken",
+		FullMethod: "/usermgmt.TokenService/ReadToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TokenServiceServer).ReadToken(ctx, req.(*Token))
@@ -213,7 +223,7 @@ func _TokenService_DropToken_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/token.TokenService/DropToken",
+		FullMethod: "/usermgmt.TokenService/DropToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TokenServiceServer).DropToken(ctx, req.(*Token))
@@ -246,7 +256,7 @@ func (x *tokenServiceGetAllTokensServer) Send(m *Token) error {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TokenService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "token.TokenService",
+	ServiceName: "usermgmt.TokenService",
 	HandlerType: (*TokenServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

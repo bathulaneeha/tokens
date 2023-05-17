@@ -1,6 +1,6 @@
 syntax = "proto3";
-package token;
-option go_package = "token/token";
+package usermgmt;
+option go_package = "example.com/go-usermgmt-grpc;go_usermgmt_grpc";
 
 //messages send between methods regarding tokens
 message Token {
