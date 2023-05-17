@@ -1,17 +1,17 @@
 syntax = "proto3";
 package usermgmt;
-option go_package = "example.com/go-usermgmt-grpc;go_usermgmt_grpc";
+option go_package="example.com/go-usermgmt-grpc;go_usermgmt_grpc";
 
 //messages send between methods regarding tokens
 message Token {
     string id = 1; 
     string name = 2;
-    uint64 dlow = 3;
-    uint64 dmid = 4;
-    uint64 dhigh = 5;
-    uint64 spvalue = 6;
-    uint64 sfvalue = 7;
-    string message = 8;
+    uint64 DomainLow = 3;
+    uint64 DomainMid = 4;
+    uint64 DomainHigh = 5;
+    uint64 StatePartialValue = 6;
+    uint64 StateFinalValue = 7;
+    string Message = 8;
 }
 service TokenService {
     //method call for creating token
